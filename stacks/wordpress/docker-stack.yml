@@ -11,6 +11,8 @@ services:
        MYSQL_DATABASE: wordpress
        MYSQL_USER: wordpress
        MYSQL_PASSWORD: wordpress
+     networks:
+       - blog_database
 
    wordpress:
      image: wordpress:latest
@@ -21,6 +23,15 @@ services:
        WORDPRESS_DB_HOST: db:3306
        WORDPRESS_DB_USER: wordpress
        WORDPRESS_DB_PASSWORD: wordpress
+     deploy:
+       labels:
+         - 'traefik.docker.network.name=prod_gateway'
+     networks:
+       - prod_gateway
+       - blog_database
 
+networks;
+    prod_gateway:
+    blog_database
 volumes:
     db_data:
