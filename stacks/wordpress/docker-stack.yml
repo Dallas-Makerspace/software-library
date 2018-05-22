@@ -16,8 +16,6 @@ services:
 
    wordpress:
      image: wordpress:latest
-     ports:
-       - 80
      restart: always
      environment:
        WORDPRESS_DB_HOST: db:3306
@@ -26,12 +24,20 @@ services:
      deploy:
        labels:
          - 'traefik.docker.network.name=prod_gateway'
+         - "traefik.frontend.rule=Host:blog.communitygrid.dms.local,blog.communitygrid.dallasmakerspace.org"
+         - "traefik.frontend.priority=0"
+         - "traefik.enable=true"
+         - "traefik.port=80"
+         - "traefik.docker.network=CommunityGrid_gateway"
+         - "traefik.acme.domains=blog.communitygrid.dallasmakerspace.org"
+         - "com.centurylinklabs.watchtower.enable"
      networks:
        - prod_gateway
        - blog_database
 
-networks;
+networks:
     prod_gateway:
-    blog_database
+    blog_database:
+
 volumes:
     db_data:
