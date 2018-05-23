@@ -143,7 +143,7 @@
     "volumes": ["/usr/share/elasticsearch/data"]
   },
   {
-    "type": "container",
+    "type": "stack",
     "title": "Gitlab CE",
     "description": "Open-source end-to-end software development platform",
     "note": "Default username is <b>root</b>. Check the <a href=\"https://docs.gitlab.com/omnibus/docker/README.html#after-starting-a-container\" target=\"_blank\">Gitlab documentation</a> to get started.",
@@ -584,7 +584,17 @@
     "repository": {
       "url": "https://github.com/openfaas/faas",
       "stackfile": "docker-compose.yml"
-    }
+    },
+    "labels": [
+      { "name": "local.dms.owner", "value": "infrastructure" },
+      { "name": "com.centurylinklabs.watchtower.enable", "value": "true" },
+      { "name": "orbiter", "value": "true" },
+      { "name":  "traefik.port", "value": "8080" },
+      { "name":  "traefik.enable", "value": "true" },
+      { "name":  "traefik.frontend.priority", "value": "100" },
+      { "name":  "traefik.frontend.rule", "value": "Host:apps.communitygrid.dallasmakerspace.org" },
+      { "name": "com.docker.swarm.affinities=[local.dms.platform==x86]" }
+    ]
   },
   {
     "type": "stack",
