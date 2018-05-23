@@ -237,8 +237,8 @@
       { "name": "local.dms.owner", "value": "infrastructure" },
       { "name": "com.centurylinklabs.watchtower.enable", "value": "true" },
       { "name": "orbiter", "value": "true" },
-      { "name"  "traefik.port", "value": "443" },
-      { "name"  "traefik.protocol", "value": "https" },
+      { "name":  "traefik.port", "value": "443" },
+      { "name":  "traefik.protocol", "value": "https" },
       { "name": "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy", "value": "" },
       { "name": "com.docker.swarm.affinities=[local.dms.platform==x86]" }
     ]
